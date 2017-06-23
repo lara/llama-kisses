@@ -1,3 +1,36 @@
-// Place all the styles related to the Purchases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  font-family: 'Roboto';
+}
+.products-listing {
+  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
+
+  form {
+    text-align: center;
+    flex: 1;
+  }
+
+  p.product-name {
+    font-size: 15px;
+    color: #4d4d4d;
+  }
+
+  p.product-description {
+    font-size: 35px;
+  }
+
+  p.product-price {
+    font-size: 22px;
+  }
+
+  .stripe-button-el {
+    margin-top: 10px;
+  }
+}
+
+.thanks {
+  p {
+    text-align: center;
+  }
+}

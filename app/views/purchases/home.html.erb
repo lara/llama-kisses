@@ -1,2 +1,20 @@
-<h1>Purchases#home</h1>
-<p>Find me in app/views/purchases/home.html.erb</p>
+
+<div class='products-listing'>
+<% @products.each do |product| %>
+  <%= form_tag purchases_path do %>
+    <p class="product-name"><%= product.name %></p>
+    <p class="product-description"><%= product.kiss_count %> kisses </p>
+    <p class="product-price"><%= format_currency(product.price) %></p>
+    <p><%= hidden_field_tag(:product_id, product.id) %></p>
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_3pv3jEYmKq2KQp389wIyrNEn"
+      data-amount="<%= product.price %>"
+      data-name="Llama Kiss Megastore"
+      data-description="<%= pluralize(product.kiss_count, "kisses") %>"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto">
+    </script>
+  <% end %>
+<% end %>
+</div>
