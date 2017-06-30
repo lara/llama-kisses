@@ -1,6 +1,11 @@
 body {
   font-family: 'Roboto';
 }
+
+p.remaining-kisses {
+  text-align: center;
+  font-size: 25px;
+}
 .products-listing {
   display: flex;
   max-width: 800px;

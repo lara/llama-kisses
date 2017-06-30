@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622170107) do
+ActiveRecord::Schema.define(version: 20170630201449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.integer "kiss_count"
-    t.integer "price"
+    t.string "name", null: false
+    t.integer "kiss_count", null: false
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.string "stripe_charge_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_purchases_on_product_id"
+    t.index ["stripe_charge_id"], name: "index_purchases_on_stripe_charge_id", unique: true
+  end
+
+  add_foreign_key "purchases", "products"
 end
