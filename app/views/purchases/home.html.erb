@@ -9,7 +9,7 @@
     <p><%= hidden_field_tag(:product_id, product.id) %></p>
     <script
       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="pk_test_3pv3jEYmKq2KQp389wIyrNEn"
+      data-key="<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>"
       data-amount="<%= product.price %>"
       data-name="Llama Kiss Megastore"
       data-description="<%= pluralize(product.kiss_count, "kisses") %>"

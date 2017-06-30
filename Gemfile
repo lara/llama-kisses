@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.1'
 gem 'sass-rails', '~> 5.0'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'uglifier', '>= 1.3.0'
+gem 'dotenv-rails'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
