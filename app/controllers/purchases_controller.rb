@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   def home
     @products = Product.order(:price)
-    @remaining_kisses = Purchase.joins(:product).sum(:kiss_count)
+    @remaining_kisses = total_kisses_purchased - total_kisses_redeemed
   end
 
   def create
@@ -19,5 +19,15 @@ class PurchasesController < ApplicationController
       product: product,
       stripe_charge_id: charge.id,
     )
+  end
+
+  private
+
+  def total_kisses_purchased
+    Purchase.joins(:product).sum(:kiss_count)
+  end
+
+  def total_kisses_redeemed
+    Redemption.sum(:kisses_redeemed)
   end
 end

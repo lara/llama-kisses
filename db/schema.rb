@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630201449) do
+ActiveRecord::Schema.define(version: 20170630205958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20170630201449) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_purchases_on_product_id"
     t.index ["stripe_charge_id"], name: "index_purchases_on_stripe_charge_id", unique: true
+  end
+
+  create_table "redemptions", force: :cascade do |t|
+    t.integer "kisses_redeemed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "purchases", "products"
