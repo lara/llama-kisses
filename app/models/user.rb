@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :purchases
+  has_many :redemptions
+
   def self.find_or_create_from_omniauth_payload(auth)
     existing_user_from_oauth(auth) || create_user_from_oauth(auth)
   end
@@ -14,5 +17,9 @@ class User < ApplicationRecord
       name: auth.info.name,
       email: auth.info.email,
     )
+  end
+
+  def remaining_kisses
+    purchases.joins(:product).sum(:kiss_count) - redemptions.sum(:kisses_redeemed)
   end
 end

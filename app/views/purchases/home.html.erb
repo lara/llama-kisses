@@ -1,24 +1,26 @@
-<p class='remaining-kisses'>You currently have <%= @remaining_kisses %> kisses!
-  <div class='redeem-button'>
-    <%= link_to 'Redeem', new_redemption_path %>
+<% if current_user %>
+  <p class='remaining-kisses'>You currently have <%= current_user.remaining_kisses %> kisses!
+    <div class='redeem-button'>
+      <%= link_to 'Redeem', new_redemption_path %>
+    </div>
+  </p>
+  <div class='products-listing'>
+    <% @products.each do |product| %>
+      <%= form_tag purchases_path do %>
+        <p class="product-name"><%= product.name %></p>
+        <p class="product-description"><%= product.kiss_count %> kisses </p>
+        <p class="product-price"><%= format_currency(product.price) %></p>
+        <p><%= hidden_field_tag(:product_id, product.id) %></p>
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>"
+          data-amount="<%= product.price %>"
+          data-name="Llama Kiss Megastore"
+          data-description="<%= pluralize(product.kiss_count, "kisses") %>"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto">
+        </script>
+      <% end %>
+    <% end %>
   </div>
-</p>
-<div class='products-listing'>
-<% @products.each do |product| %>
-  <%= form_tag purchases_path do %>
-    <p class="product-name"><%= product.name %></p>
-    <p class="product-description"><%= product.kiss_count %> kisses </p>
-    <p class="product-price"><%= format_currency(product.price) %></p>
-    <p><%= hidden_field_tag(:product_id, product.id) %></p>
-    <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>"
-      data-amount="<%= product.price %>"
-      data-name="Llama Kiss Megastore"
-      data-description="<%= pluralize(product.kiss_count, "kisses") %>"
-      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-      data-locale="auto">
-    </script>
-  <% end %>
 <% end %>
-</div>

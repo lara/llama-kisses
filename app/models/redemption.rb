@@ -1,4 +1,5 @@
 class Redemption < ApplicationRecord
+  belongs_to :user
   validate :kiss_count_cannot_exceed_available_kisses, on: :create
 
   private
@@ -14,6 +15,6 @@ class Redemption < ApplicationRecord
   end
 
   def available_kisses
-    Purchase.joins(:product).sum(:kiss_count) - Redemption.sum(:kisses_redeemed)
+    user.remaining_kisses
   end
 end

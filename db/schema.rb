@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702032139) do
+ActiveRecord::Schema.define(version: 20170702145219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,18 @@ ActiveRecord::Schema.define(version: 20170702032139) do
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["product_id"], name: "index_purchases_on_product_id"
     t.index ["stripe_charge_id"], name: "index_purchases_on_stripe_charge_id", unique: true
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "redemptions", force: :cascade do |t|
     t.integer "kisses_redeemed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_redemptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +53,6 @@ ActiveRecord::Schema.define(version: 20170702032139) do
   end
 
   add_foreign_key "purchases", "products"
+  add_foreign_key "purchases", "users"
+  add_foreign_key "redemptions", "users"
 end

@@ -4,7 +4,7 @@ class RedemptionsController < ApplicationController
   end
 
   def create
-    @redemption = Redemption.new(redemtion_params)
+    @redemption = current_user.redemptions.new(redemption_params)
 
     unless @redemption.save
       render :new
@@ -13,7 +13,7 @@ class RedemptionsController < ApplicationController
 
   private
 
-  def redemtion_params
+  def redemption_params
     params.require(:redemption).permit(:kisses_redeemed)
   end
 end

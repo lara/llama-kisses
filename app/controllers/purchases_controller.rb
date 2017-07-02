@@ -1,7 +1,6 @@
 class PurchasesController < ApplicationController
   def home
     @products = Product.order(:price)
-    @remaining_kisses = total_kisses_purchased - total_kisses_redeemed
   end
 
   def create
@@ -15,7 +14,7 @@ class PurchasesController < ApplicationController
       source: token,
     )
 
-    Purchase.create!(
+    current_user.purchases.create!(
       product: product,
       stripe_charge_id: charge.id,
     )
