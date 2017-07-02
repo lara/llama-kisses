@@ -11,6 +11,11 @@
 
   <body>
     <h1>Llama Kisses Megastore</h1>
+    <% if current_user %>
+      <%= link_to "Log out", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "Log in with GitHub", "/auth/github" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
