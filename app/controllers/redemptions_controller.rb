@@ -4,7 +4,11 @@ class RedemptionsController < ApplicationController
   end
 
   def create
-    @redemption = Redemption.create!(redemtion_params)
+    @redemption = Redemption.new(redemtion_params)
+
+    unless @redemption.save
+      render :new
+    end
   end
 
   private

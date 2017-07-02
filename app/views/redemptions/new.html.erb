@@ -1,3 +1,11 @@
+<% if @redemption.errors.any? %>
+  <ul>
+    <% @redemption.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @redemption do |f| %>
   <%= f.label :kisses_redeemed, "How many kisses would you like to redeem today? 💋 " %>
   <%= f.text_field :kisses_redeemed %>
