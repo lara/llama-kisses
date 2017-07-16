@@ -22,6 +22,8 @@ class PurchasesController < ApplicationController
       product: product,
       stripe_charge_id: charge.id,
     )
+
+    PurchaseMailer.redemption_reminder_email(current_user.purchases.last).deliver_later(wait: 1.day)
   end
 
   private

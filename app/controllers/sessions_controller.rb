@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     sign_in_user oauth_session.user
+    UserMailer.sign_in_email(current_user).deliver_later(wait: 10.seconds)
     redirect_to request.env["omniauth.origin"]
   end
 
