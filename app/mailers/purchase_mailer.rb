@@ -4,6 +4,12 @@ class PurchaseMailer < ApplicationMailer
   #
   #   en.purchase_mailer.redemption_reminder_email.subject
   #
+
+  def purchase_reminder_email(user)
+    @user = user
+    mail to: user.email
+  end
+
   def redemption_reminder_email(purchase)
     @purchase = purchase
     @user = purchase.user
