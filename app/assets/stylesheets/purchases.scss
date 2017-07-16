@@ -2,6 +2,16 @@ body {
   font-family: 'Roboto';
 }
 
+table {
+  text-align: center;
+  margin: 0 auto;
+
+  th, td {
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+  }
+}
+
 p.remaining-kisses {
   text-align: center;
   font-size: 25px;

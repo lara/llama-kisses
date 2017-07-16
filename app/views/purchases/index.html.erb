@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Purchased at</th>
+      <th>Product Name</th>
+      <th>Number of Kisses</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.created_at.strftime("%m/%d/%Y") %></td>
+        <td><%= purchase.product.name %></td>
+        <td><%= purchase.product.kiss_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

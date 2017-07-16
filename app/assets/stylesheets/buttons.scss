@@ -1,0 +1,19 @@
+.button-group {
+  display: flex;
+
+  .button {
+    margin: 5px;
+  }
+}
+
+
+.button {
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px;
+  appearance: none;
+  font: inherit;
+  background: none;
+}

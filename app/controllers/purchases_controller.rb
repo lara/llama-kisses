@@ -3,6 +3,10 @@ class PurchasesController < ApplicationController
     @products = Product.order(:price)
   end
 
+  def index
+    @purchases = current_user.purchases.order(created_at: :desc).includes(:product)
+  end
+
   def create
     token = params[:stripeToken]
     product = Product.find(params[:product_id])

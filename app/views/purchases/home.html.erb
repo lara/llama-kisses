@@ -1,9 +1,5 @@
 <% if current_user %>
-  <p class='remaining-kisses'>You currently have <%= current_user.remaining_kisses %> kisses!
-    <div class='redeem-button'>
-      <%= link_to 'Redeem', new_redemption_path %>
-    </div>
-  </p>
+  <p class='remaining-kisses'>You currently have <%= current_user.remaining_kisses %> kisses!</p>
   <div class='products-listing'>
     <% @products.each do |product| %>
       <%= form_tag purchases_path do %>

@@ -10,12 +10,21 @@
   </head>
 
   <body>
-    <h1>Llama Kisses Megastore</h1>
-    <% if current_user %>
-      <%= link_to "Log out", logout_path, method: :delete %>
-    <% else %>
-      <%= link_to "Log in with GitHub", "/auth/github" %>
-    <% end %>
+    <header>
+      <h1>Llama Kisses Megastore</h1>
+      <% if current_user %>
+        <div class="button-group">
+          <%= link_to "Home", root_path, class: "button" %>
+          <%= link_to "Redeem", new_redemption_path, class: "button" %>
+          <%= link_to "Order History", purchases_path, class: "button" %>
+          <%= link_to "Log out", logout_path, method: :delete, class: "button" %>
+        </div>
+      <% else %>
+        <div class="button-group">
+          <%= link_to "Log in with GitHub", "/auth/github", class: "button"%>
+        </div>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
