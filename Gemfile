@@ -6,16 +6,17 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'dotenv-rails'
+gem 'geocoder'
+gem 'omniauth-github'
+gem 'omniauth'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.1'
 gem 'sass-rails', '~> 5.0'
+gem 'sidekiq'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'uglifier', '>= 1.3.0'
-gem 'dotenv-rails'
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'sidekiq'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
