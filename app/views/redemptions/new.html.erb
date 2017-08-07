@@ -6,23 +6,26 @@
   </ul>
 <% end %>
 
-<%= form_for @redemption do |f| %>
-  <%= f.label :kisses_redeemed, "You can virtually redeem kisses here! How many 💋 would you like?" %>
-  <%= f.text_field :kisses_redeemed %>
-  <%= f.submit 'Redeem Kisses!', class: "button"%>
-<% end %>
-
-<p>Or you can look up the closest llama ranches to you to plan a trip:</p>
-
-<%= form_tag(new_redemption_path, method: :get) do %>
-  <%= label_tag :search %>
-  <%= text_field_tag :search, params[:search] %>
-
-  <%= submit_tag %>
-<% end %>
-
-<ul>
-  <% @nearest_llama_ranches.each do |llama_ranch| %>
-  <li><%= llama_ranch.address %></li>
+<div id="virtual-kisses">
+  <p>You can virtually redeem kisses here! How many 💋 would you like?</p>
+  <%= form_for @redemption do |f| %>
+    <%= f.label :kisses_redeemed, label: false %>
+    <%= f.text_field :kisses_redeemed %>
+    <%= f.submit 'Redeem Kisses!', class: "button redeem-button"%>
   <% end %>
-</ul>
+</div>
+
+<div id="llama-ranch-lookup">
+  <p>Or you can look up the closest llama ranches to you to plan a trip:</p>
+  <%= form_tag(new_redemption_path, method: :get) do %>
+    <%= label_tag :search %>
+    <%= text_field_tag :search, params[:search] %>
+
+    <%= submit_tag "Search", class: "button search-button"%>
+  <% end %>
+  <ul>
+    <% @nearest_llama_ranches.each do |llama_ranch| %>
+    <li><%= llama_ranch.address %></li>
+    <% end %>
+  </ul>
+</div>

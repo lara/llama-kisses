@@ -8,6 +8,7 @@ class RedemptionsController < ApplicationController
     @redemption = current_user.redemptions.new(redemption_params)
 
     unless @redemption.save
+      @nearest_llama_ranches = []
       render :new
     end
   end

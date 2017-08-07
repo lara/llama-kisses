@@ -6,7 +6,6 @@
   }
 }
 
-
 .button {
   text-decoration: none;
   border: 1px solid black;
@@ -16,4 +15,11 @@
   appearance: none;
   font: inherit;
   background: none;
+
+  &.redeem-button, &.search-button {
+    font-size: 12px;
+    background-color: #93c7f1;
+    border: none;
+    padding: 5px;
+  }
 }
